@@ -1,0 +1,1973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PixelPulse Media - Building Modern Digital Experiences</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        :root {
+            --primary: #F9FAFB;
+            --secondary: #D9D6FF;
+            --accent: #FF69B4;
+            --accent-gradient: linear-gradient(135deg, #FF69B4, #D9D6FF, #A8C6FF);
+            --accent-glow: rgba(255, 105, 180, 0.3);
+            --text: #333333;
+            --text-muted: #666666;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --glass-bg: rgba(255, 255, 255, 0.7);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --transition: all 0.3s ease;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--primary);
+            background-image: radial-gradient(circle at top right, rgba(217, 214, 255, 0.3), transparent 40%), 
+                              radial-gradient(circle at bottom left, rgba(168, 198, 255, 0.2), transparent 30%);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 50px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: var(--text-muted);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--text);
+            transition: var(--transition);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--text);
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            background: var(--accent);
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            width: 100%;
+        }
+
+        .btn:hover {
+            color: var(--primary);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            margin-bottom: 20px;
+        }
+
+        .section-title h2::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title p {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Glassmorphism Styles */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .gradient-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--accent-gradient);
+            color: white;
+            font-weight: 600;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            box-shadow: 0 5px 15px var(--accent-glow);
+        }
+        
+        .gradient-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px var(--accent-glow);
+        }
+        
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .navbar.sticky {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            box-shadow: var(--shadow);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text);
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 25px;
+            height: 3px;
+            background: var(--text);
+            margin: 5px;
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        /* Services Section */
+        .services {
+            background-color: var(--secondary);
+            position: relative;
+        }
+
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top right, var(--accent-glow) 0%, transparent 70%);
+            opacity: 0.05;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-card:hover::before {
+            width: 100%;
+            opacity: 0.1;
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            background-color: var(--primary);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 250px;
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: var(--transition);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay h3 {
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        .portfolio-overlay p {
+            color: var(--accent);
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background-color: var(--secondary);
+            position: relative;
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at bottom left, var(--accent-glow) 0%, transparent 70%);
+            opacity: 0.05;
+        }
+
+        .testimonial-slider {
+            position: relative;
+            overflow: hidden;
+            height: 400px;
+        }
+
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .testimonial-slide {
+            min-width: 100%;
+            padding: 0 15px;
+        }
+
+        .testimonial-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 6rem;
+            color: var(--accent);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-content {
+            flex: 1;
+            margin-bottom: 30px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+            border: 3px solid var(--accent);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .author-info h4 {
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            color: var(--accent);
+            margin-bottom: 0;
+        }
+
+        .testimonial-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .control-btn {
+            background: transparent;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+            margin: 0 15px;
+            transition: var(--transition);
+        }
+
+        .control-btn:hover {
+            color: var(--accent);
+            transform: scale(1.2);
+        }
+
+        .testimonial-dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            margin: 0 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .dot.active {
+            background: var(--accent);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--primary);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-img {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .about-img img {
+            width: 100%;
+            display: block;
+        }
+
+        .about-img::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--accent-glow) 0%, transparent 100%);
+            opacity: 0.3;
+        }
+
+        .about-text h2 {
+            text-align: left;
+        }
+
+        .about-text h2::after {
+            left: 0;
+            transform: none;
+        }
+
+        .about-text p {
+            margin-bottom: 30px;
+        }
+
+        /* Contact Section */
+        .contact {
+            background-color: var(--secondary);
+            position: relative;
+        }
+
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top right, var(--accent-glow) 0%, transparent 70%);
+            opacity: 0.05;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info h2 {
+            text-align: left;
+        }
+
+        .contact-info h2::after {
+            left: 0;
+            transform: none;
+        }
+
+        .contact-details {
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .contact-icon {
+            margin-right: 15px;
+            font-size: 1.2rem;
+            color: var(--accent);
+            width: 40px;
+            height: 40px;
+            background: var(--glass-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-form {
+            padding: 40px;
+            border-radius: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--text);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            color: var(--text);
+            font-weight: 500;
+            transition: var(--transition);
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.08);
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-glow);
+        }
+        
+        textarea.form-control {
+            height: 150px;
+            resize: none;
+        }
+        
+        .social-links {
+            margin-top: 30px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: var(--glass-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            font-size: 1.2rem;
+            transition: var(--transition);
+            border: 1px solid var(--glass-border);
+        }
+        
+        .social-icons a:hover {
+            transform: translateY(-5px);
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 5px 15px var(--accent-glow);
+        }
+        
+        .success-message {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            color: #4CAF50;
+            font-weight: 500;
+        }
+        
+        .success-message i {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        
+        #contactForm.submitted .success-message {
+            display: flex;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--card-bg);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+            color: var(--accent);
+            font-size: 1.2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .contact-form {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--text);
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            background: var(--accent);
+            color: var(--primary);
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .form-btn:hover {
+            box-shadow: 0 0 20px var(--accent-glow);
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .footer-logo span {
+            color: var(--accent);
+        }
+        
+        .glass-footer {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--glass-border);
+            padding: 60px 0 30px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--card-bg);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 10px;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: var(--accent);
+            color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .copyright {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .about-img {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 80px 0;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: var(--secondary);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: var(--transition);
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                right: 0;
+                box-shadow: -5px 0 30px rgba(0, 0, 0, 0.3);
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .hamburger {
+                display: block;
+                z-index: 1000;
+            }
+
+            .hamburger.active div:nth-child(1) {
+                transform: rotate(-45deg) translate(-5px, 6px);
+            }
+
+            .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active div:nth-child(3) {
+                transform: rotate(45deg) translate(-5px, -6px);
+            }
+
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            .hero {
+                text-align: center;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonial-card {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="logo">Pixel<span>Pulse</span> Media</a>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#portfolio">Featured Work</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>We Create Stories That People Remember.</h1>
+                <p>Pixel Pulse Media brings brands to life with unforgettable visuals and digital storytelling.</p>
+                <div class="hero-btns">
+                    <a href="#contact" class="btn btn-primary">Start a Project</a>
+                    <a href="#services" class="btn btn-secondary">Our Services</a>
+                </div>
+            </div>
+            <div class="floating-icons">
+                <div class="icon-item" style="--delay: 0s;"><i class="fas fa-camera"></i></div>
+                <div class="icon-item" style="--delay: 1s;"><i class="fas fa-video"></i></div>
+                <div class="icon-item" style="--delay: 2s;"><i class="fas fa-paint-brush"></i></div>
+                <div class="icon-item" style="--delay: 3s;"><i class="fas fa-laptop-code"></i></div>
+                <div class="icon-item" style="--delay: 4s;"><i class="fas fa-chart-line"></i></div>
+            </div>
+        </div>
+        <div class="hero-bg"></div>
+    </section>
+    
+    <style>
+        /* Glassmorphism and Hero Styles */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: var(--primary);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1000px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .btn-primary {
+            background: var(--accent-gradient);
+            border: none;
+            color: white;
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--text);
+            font-weight: 600;
+            padding: 12px 30px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .floating-icons {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .icon-item {
+            position: absolute;
+            font-size: 2rem;
+            color: var(--accent);
+            opacity: 0.6;
+            animation: float 6s infinite ease-in-out;
+            animation-delay: var(--delay);
+        }
+        
+        .icon-item:nth-child(1) { top: 20%; right: 20%; }
+        .icon-item:nth-child(2) { top: 30%; right: 60%; }
+        .icon-item:nth-child(3) { top: 60%; right: 30%; }
+        .icon-item:nth-child(4) { top: 70%; right: 70%; }
+        .icon-item:nth-child(5) { top: 40%; right: 40%; }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+            100% { transform: translateY(0) rotate(0deg); }
+        }
+    </style>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>Elevating brands through creative solutions and strategic digital experiences</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon" style="--icon-gradient: linear-gradient(135deg, #FF69B4, #D9D6FF);">
+                        <i class="fas fa-hashtag"></i>
+                    </div>
+                    <h3>Social Media Management</h3>
+                    <p>Engaging content that builds communities and creates meaningful connections with your audience.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon" style="--icon-gradient: linear-gradient(135deg, #D9D6FF, #A8C6FF);">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Brand Identity</h3>
+                    <p>Logo, design, and visuals that represent your brand's voice and create lasting impressions.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon" style="--icon-gradient: linear-gradient(135deg, #A8C6FF, #FF69B4);">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>Video Production</h3>
+                    <p>Ad films, product reels, and storytelling videos that capture attention and convey your message.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon" style="--icon-gradient: linear-gradient(135deg, #FF69B4, #A8C6FF);">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3>Content Creation</h3>
+                    <p>Photography, product media, and influencer shoots that showcase your products in the best light.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon" style="--icon-gradient: linear-gradient(135deg, #D9D6FF, #FF69B4);">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3>Digital Campaigns</h3>
+                    <p>Growth-focused marketing strategies that increase visibility and drive measurable results.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon" style="--icon-gradient: linear-gradient(135deg, #A8C6FF, #D9D6FF);">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Creative Strategy</h3>
+                    <p>Smart ideas backed by insights that help your brand stand out in a crowded marketplace.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <style>
+        /* Updated Service Cards with Glassmorphism */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .service-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--icon-gradient);
+            border-radius: 20px;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: white;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text);
+        }
+        
+        .service-card p {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+    </style>
+
+  <!-- Portfolio Section -->
+<section id="portfolio" class="portfolio">
+    <div class="container">
+        <div class="section-title">
+            <h2>Featured Work</h2>
+            <p>Discover how we've helped brands tell their stories and achieve remarkable results</p>
+        </div>
+        <div class="portfolio-grid">
+            <!-- RISE CAFÉ -->
+            <div class="portfolio-item" data-project="rise-cafe">
+                <div class="portfolio-image">
+                    <img src="assets/cafe.jpg" alt="Rise Café" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-buttons">
+                            <button class="view-project-btn">View</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h3>Rise Café</h3>
+                    <p>Rebrand & Launch Campaign (10K+ followers in 45 days)</p>
+                    <span class="portfolio-tag">Brand Identity</span>
+                    <span class="portfolio-tag">Social Media</span>
+                </div>
+            </div>
+
+            <!-- GLOWUP BEAUTY -->
+            <div class="portfolio-item" data-project="glowup-beauty">
+                <div class="portfolio-image">
+                    <img src="assets/glow-beauty.jpg" alt="GlowUp Beauty" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-buttons">
+                            <button class="view-project-btn">View</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h3>GlowUp Beauty</h3>
+                    <p>Product Video Series (+35% online sales)</p>
+                    <span class="portfolio-tag">Video Production</span>
+                    <span class="portfolio-tag">Content Creation</span>
+                </div>
+            </div>
+
+            <!-- DRIVEX MOTORS -->
+            <div class="portfolio-item" data-project="drivex-motors">
+                <div class="portfolio-image">
+                    <img src="assets/car.jpg" alt="DriveX Motors" class="portfolio-img">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-buttons">
+                            <button class="view-project-btn">View</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-info">
+                    <h3>DriveX Motors</h3>
+                    <p>Viral Story Ads (1M+ reach)</p>
+                    <span class="portfolio-tag">Digital Campaigns</span>
+                    <span class="portfolio-tag">Creative Strategy</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECT MODAL POPUP -->
+<div id="projectModal" class="modal">
+    <div class="modal-content glass-card">
+        <span class="modal-close">×</span>
+        <div class="modal-body">
+            <img id="modalImage" src="" alt="" class="modal-img">
+            <div class="modal-info">
+                <h3 id="modalTitle"></h3>
+                <p id="modalSubtitle"></p>
+                <div id="modalMetrics" class="modal-metrics"></div>
+                <p id="modalDesc"></p>
+            </div>
+        </div>
+    </div>
+</div>  
+    <style>
+        /* MODAL POPUP STYLES */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.active {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    max-width: 900px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: modalSlide 0.4s ease;
+}
+
+@keyframes modalSlide {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    color: var(--text);
+    cursor: pointer;
+    z-index: 1;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.modal-close:hover {
+    color: var(--accent);
+}
+
+.modal-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    padding: 30px;
+}
+
+.modal-img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+}
+
+.modal-info h3 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.modal-info p#modalSubtitle {
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.modal-metrics {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.metric-item {
+    background: var(--glass-bg);
+    padding: 12px 18px;
+    border-radius: 12px;
+    text-align: center;
+    min-width: 100px;
+    border: 1px solid var(--glass-border);
+}
+
+.metric-item strong {
+    display: block;
+    font-size: 1.5rem;
+    color: var(--accent);
+}
+
+.metric-item span {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.modal-info p#modalDesc {
+    line-height: 1.7;
+    color: var(--text);
+}
+
+@media (max-width: 768px) {
+    .modal-body {
+        grid-template-columns: 1fr;
+    }
+    .modal-img {
+        height: 200px;
+    }
+}
+        /* Portfolio Styling */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .portfolio-item {
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .portfolio-image {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .portfolio-image img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-image img {
+            transform: scale(1.1);
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-buttons {
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-buttons {
+            transform: translateY(0);
+        }
+        
+        .view-project-btn {
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .view-project-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .portfolio-info {
+            padding: 20px;
+        }
+        
+        .portfolio-info h3 {
+            margin: 0 0 5px;
+            font-size: 1.5rem;
+            color: var(--text);
+        }
+        
+        .portfolio-info p {
+            margin: 0 0 15px;
+            color: var(--text-muted);
+        }
+        
+        .portfolio-tag {
+            display: inline-block;
+            background: var(--secondary);
+            color: var(--text);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 8px;
+            font-weight: 500;
+        }
+    </style>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>Client Testimonials</h2>
+                <p>What our clients say about our digital solutions</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-track">
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>PixelPulse Media transformed our online presence completely. Their web development team created a stunning website that not only looks great but also performs exceptionally well. Our conversion rates have increased by 45% since launch.</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <img src="https://via.placeholder.com/100/121212/00eeff?text=J" alt="James Thompson" class="author-img">
+                                <div class="author-info">
+                                    <h4>James Thompson</h4>
+                                    <p>CEO, Vertex Solutions</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>The AI chatbot developed by PixelPulse Media has revolutionized our customer service. It handles over 80% of inquiries automatically, allowing our team to focus on more complex issues. The ROI has been incredible.</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <img src="https://via.placeholder.com/100/121212/00eeff?text=L" alt="Lisa Zhang" class="author-img">
+                                <div class="author-info">
+                                    <h4>Lisa Zhang</h4>
+                                    <p>CTO, NexGen Retail</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide">
+                        <div class="testimonial-card">
+                            <div class="testimonial-content">
+                                <p>Working with PixelPulse Media on our automation strategy was a game-changer. Their custom scripts have saved our team over 20 hours per week and eliminated costly human errors. Their ongoing support gives us peace of mind.</p>
+                            </div>
+                            <div class="testimonial-author">
+                                <img src="https://via.placeholder.com/100/121212/00eeff?text=D" alt="David Rodriguez" class="author-img">
+                                <div class="author-info">
+                                    <h4>David Rodriguez</h4>
+                                    <p>Operations Director, Global Logistics</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-controls">
+                <button class="control-btn prev-btn">Previous</button>
+                <button class="control-btn next-btn">Next</button>
+            </div>
+            <div class="testimonial-dots">
+                <span class="dot active" data-slide="0"></span>
+                <span class="dot" data-slide="1"></span>
+                <span class="dot" data-slide="2"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Who We Are</h2>
+                <p>The creative minds behind unforgettable brand experiences</p>
+            </div>
+            <div class="about-content">
+                <!-- TEAM IMAGE – YOUR LOCAL FILE -->
+                <div class="about-img">
+                    <img src="assets/team.jpg" alt="Pixel Pulse Media Team">
+                </div>
+                <div class="about-text">
+                    <h3>Our Agency</h3>
+                    <p class="about-intro">Pixel Pulse Media is a creative media house that helps brands grow through powerful storytelling, visual identity, and high-impact digital content.</p>
+                    <p><strong>Mission:</strong> To create media that connects emotionally and empowers businesses through innovative digital solutions that drive growth.</p>
+                    <p><strong>Vision:</strong> To make every brand unforgettable and be the leading digital agency known for creating transformative digital experiences.</p>
+                    <p><strong>Values:</strong> Our work is guided by our commitment to innovation, quality, collaboration, and client success.</p>
+                    <div class="brand-stats">
+                        <div class="stat-item">
+                            <h4>10K+</h4>
+                            <p>Audience Growth</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>1M+</h4>
+                            <p>Video Reach</p>
+                        </div>
+                        <div class="stat-item">
+                            <h4>50+</h4>
+                            <p>Creative Launches</p>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <style>
+        /* About Section Styling */
+        .about-intro {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: var(--text);
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .brand-stats {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0;
+            padding: 20px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-item h4 {
+            font-size: 2.5rem;
+            margin: 0;
+            background: linear-gradient(135deg, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .stat-item p {
+            margin: 5px 0 0;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+    </style>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Let's Make Something Amazing</h2>
+                <p>Ready to transform your brand with unforgettable visuals and digital storytelling?</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <p>We're always excited to discuss new projects, creative ideas, or opportunities to help your brand stand out through powerful storytelling.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Location</h4>
+                                <p>123 Creative Avenue, Media City</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>Email</h4>
+                                <p>hello@pixelpulsemedia.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+1 (555) 234-5678</p>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+                <div class="contact-form glass-card">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="budget">Budget</label>
+                            <select id="budget" class="form-control" required>
+                                <option value="" disabled selected>Select your budget range</option>
+                                <option value="under5k">Under $5,000</option>
+                                <option value="5k-10k">$5,000 - $10,000</option>
+                                <option value="10k-25k">$10,000 - $25,000</option>
+                                <option value="25k-plus">$25,000+</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" placeholder="Tell us about your project" required></textarea>
+                        </div>
+                        <button type="submit" class="gradient-btn">Start a Project</button>
+                        <div class="success-message">
+                            <i class="fas fa-check-circle"></i>
+                            <p>Thanks for reaching out! We'll be in touch soon.</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="glass-footer">
+        <div class="container">
+            <div class="footer-logo">Pixel<span>Pulse</span> Media</div>
+            <p>We Create Stories That People Remember</p>
+            <div class="social-links">
+                <a href="#" class="social-link">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="#" class="social-link">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+            </div>
+            <p class="copyright">© 2023 PixelPulse Media. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- Add Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <script>
+        // Sticky Navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('sticky');
+            } else {
+                navbar.classList.remove('sticky');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Testimonial Slider
+        const track = document.querySelector('.testimonial-track');
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dots = document.querySelectorAll('.dot');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        let currentIndex = 0;
+
+        // Set initial position
+        updateSlider();
+
+        // Event listeners for controls
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : slides.length - 1;
+            updateSlider();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
+            updateSlider();
+        });
+
+        // Dot navigation
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentIndex = index;
+                updateSlider();
+            });
+        });
+
+        function updateSlider() {
+            // Update track position
+            track.style.transform = `translateX(-${currentIndex * 100}%)`;
+            
+            // Update active dot
+            dots.forEach((dot, index) => {
+                if (index === currentIndex) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        // Auto slide
+        setInterval(() => {
+            currentIndex = (currentIndex < slides.length - 1) ? currentIndex + 1 : 0;
+            updateSlider();
+        }, 5000);
+
+        // Form submission with animation
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            this.classList.add('submitted');
+            document.querySelector('.success-message').style.display = 'flex';
+            
+            // Reset form after delay
+            setTimeout(() => {
+                this.reset();
+                document.querySelector('.success-message').style.display = 'none';
+                this.classList.remove('submitted');
+            }, 3000);
+        });
+    </script>
+    <script>
+// PROJECT DATA
+const projects = {
+    "rise-cafe": {
+        title: "Rise Café",
+        subtitle: "Rebrand & Social Launch",
+        img: "assets/cafe.jpg",
+        metrics: [
+            { value: "10K+", label: "Followers in 45 Days" },
+            { value: "300%", label: "Engagement Boost" },
+            { value: "2x", label: "Weekend Sales" }
+        ],
+        desc: "We rebranded Rise Café with a fresh, cozy identity and launched a hyper-local Instagram campaign. Using UGC, reels, and influencer takeovers, we grew from 800 to 10,800 followers in 45 days — doubling weekend foot traffic."
+    },
+    "glowup-beauty": {
+        title: "GlowUp Beauty",
+        subtitle: "Product Launch Video Series",
+        img: "assets/glow-beauty.jpg",
+        metrics: [
+            { value: "+35%", label: "Online Sales" },
+            { value: "48hrs", label: "Sold Out" },
+            { value: "1.2M", label: "TikTok Views" }
+        ],
+        desc: "A cinematic 3-part product reveal that sold out the entire skincare line in 48 hours. Shot with macro beauty shots and real customer stories, the campaign generated 1.2M+ views and a 35% revenue lift."
+    },
+    "drivex-motors": {
+        title: "DriveX Motors",
+        subtitle: "Viral Story Ads",
+        img: "assets/car.jpg",
+        metrics: [
+            { value: "1M+", label: "Reach" },
+            { value: "42K", label: "Test Drive Bookings" },
+            { value: "18%", label: "Conversion Rate" }
+        ],
+        desc: "A high-energy ad series featuring real drivers and their journeys. Launched across Meta + YouTube, it reached 1M+ users, generated 42K test drive requests, and achieved an 18% lead-to-booking conversion."
+    }
+};
+
+// MODAL ELEMENTS
+const modal = document.getElementById('projectModal');
+const modalImg = document.getElementById('modalImage');
+const modalTitle = document.getElementById('modalTitle');
+const modalSubtitle = document.getElementById('modalSubtitle');
+const modalMetrics = document.getElementById('modalMetrics');
+const modalDesc = document.getElementById('modalDesc');
+const closeBtn = document.querySelector('.modal-close');
+
+// OPEN MODAL
+document.querySelectorAll('.view-project-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const projectId = btn.closest('.portfolio-item').dataset.project;
+        const project = projects[projectId];
+
+        modalImg.src = project.img;
+        modalTitle.textContent = project.title;
+        modalSubtitle.textContent = project.subtitle;
+        modalDesc.textContent = project.desc;
+
+        modalMetrics.innerHTML = '';
+        project.metrics.forEach(metric => {
+            const div = document.createElement('div');
+            div.className = 'metric-item';
+            div.innerHTML = `<strong>${metric.value}</strong><span>${metric.label}</span>`;
+            modalMetrics.appendChild(div);
+        });
+
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+});
+
+// CLOSE MODAL
+closeBtn.addEventListener('click', () => {
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
+});
+
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+});
+</script>
+</body>
+</html>
