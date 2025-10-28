@@ -2,13 +2,14 @@
 <img width="124" height="124" alt="logo copy" src="https://github.com/user-attachments/assets/171b8b27-0647-4225-be3e-b4710f7f937b" />
 
 
-# PixelPulse Media
+###PixelPulse Media
+We Create Stories That People Remember.
+A modern, glassmorphic, fully responsive digital agency website built with vanilla HTML, CSS, and JavaScript — no frameworks, no bloat.
+PixelPulse Media blends clean UI design with immersive storytelling to showcase how creativity and performance can coexist beautifully in a static site. Designed for speed, accessibility, and aesthetic impact — this project demonstrates how far pure front-end craftsmanship can go without relying on heavy frameworks.
+It’s more than just a landing page — it’s a showcase of design precision, motion, and brand storytelling, crafted to inspire both clients and developers alike.
 
-**We Create Stories That People Remember.**  
-A modern, glassmorphic, fully responsive digital agency website built with **vanilla HTML, CSS, and JavaScript** — no frameworks, no bloat.
+Live Demo: [https://aqsak-dev99.github.io/pixel_media/)  
 
-Live Demo: [pixelpulsemedia.live](https://pixelpulsemedia.live)  
-*(Replace with your actual domain or GitHub Pages link)*
 
 ---
 
@@ -19,25 +20,22 @@ Live Demo: [pixelpulsemedia.live](https://pixelpulsemedia.live)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](#)
 [![Responsive](https://img.shields.io/badge/Responsive-100%25-4CAF50?style=for-the-badge)](#)
 [![Glassmorphism](https://img.shields.io/badge/Style-Glassmorphism-ff69b4?style=for-the-badge)](#)
-[![No Frameworks](https://img.shields.io/badge/No_Framework-0%25-orange?style=for-the-badge)](#)
 [![VS Code](https://img.shields.io/badge/Made_with-VS_Code-007ACC?style=for-the-badge&logo=visual-studio-code)](#)
 
 ---
 
 ## Features
-
-| Feature | Status |
-|-------|--------|
-| Glassmorphic Design | Done |
-| Smooth Scroll & Sticky Nav | Done |
-| Mobile-First Responsive | Done |
-| Interactive Portfolio Popups | Done |
-| Success Metrics & Case Studies | Done |
-| Gradient Text Effects | Done |
-| Floating Hero Icons | Done |
-| Auto-Sliding Testimonials | Done |
-| Contact Form with Success Animation | Done |
-| Dark Mode Ready (Coming Soon) | In Progress |
+✨ Features
+🎨 Glassmorphic Design
+🧭 Smooth Scroll & Sticky Navigation
+📱 Mobile-First Responsive Layout
+🖼️ Interactive Portfolio Popups
+📊 Success Metrics & Case Studies
+🌈 Gradient Text & Glow Effects
+💫 Floating Hero Icons Animation
+💬 Auto-Sliding Testimonials
+📩 Contact Form with Success Animation
+🌙 Dark Mode (Coming Soon)
 
 ---
 Demo video:
@@ -61,19 +59,6 @@ Screeshots
 
 
 
-
-
-## Project Structure
-pixelpulse-media/
-├── index.html
-├── assets/
-│   ├── cafe.jpg
-│   ├── glow-beauty.jpg
-│   ├── car.jpg
-│   └── team.jpg
-└── README.md
-
-
 ## Tech Stack
 
 - **HTML5** – Semantic structure
@@ -84,15 +69,9 @@ pixelpulse-media/
 
 ---
 
-## Screenshots
 
-| Desktop | Mobile |
-|--------|--------|
-| ![Desktop View](https://via.placeholder.com/800x450?text=Desktop+View) | ![Mobile View](https://via.placeholder.com/400x800?text=Mobile+View) |
 
-> *Add real screenshots by dragging images into GitHub or using `![alt](path/to/image.jpg)`*
 
----
 
 ## How to Use
 
