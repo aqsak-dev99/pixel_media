@@ -40,7 +40,10 @@ Live Demo: [pixelpulsemedia.live](https://pixelpulsemedia.live)
 | Dark Mode Ready (Coming Soon) | In Progress |
 
 ---
-Demo video
+Demo video:
+
+![pixel_media-ezgif com-video-to-gif-converter](https://github.com/user-attachments/assets/897e63cc-2b76-437a-9f98-c72a6af6316d)
+
 
 
 
@@ -49,15 +52,12 @@ Screeshots
 <img width="980" height="600" alt="Screenshot 2025-10-29 at 12 58 56 AM" src="https://github.com/user-attachments/assets/68242246-9b53-4100-afd0-f49f5e6994aa" />
 
 
-
-
 <img width="980" height="600" alt="Screenshot 2025-10-29 at 12 58 59 AM" src="https://github.com/user-attachments/assets/f579a76c-954b-40cf-93f9-6258525c467f" />
-
-
 
 
 <img width="980" height="600" alt="Screenshot 2025-10-29 at 12 59 02 AM" src="https://github.com/user-attachments/assets/0f5fea59-e5fd-4e8a-a21f-c57eef828166" />
 
+<img width="980" height="600" alt="Screenshot 2025-10-29 at 12 59 14 AM" src="https://github.com/user-attachments/assets/8a92771c-0d90-4f10-8f35-69809738a80c" />
 
 
 
