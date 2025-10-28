@@ -2,7 +2,7 @@
 <img width="124" height="124" alt="logo copy" src="https://github.com/user-attachments/assets/171b8b27-0647-4225-be3e-b4710f7f937b" />
 
 
-###PixelPulse Media
+PixelPulse Media
 We Create Stories That People Remember.
 A modern, glassmorphic, fully responsive digital agency website built with vanilla HTML, CSS, and JavaScript — no frameworks, no bloat.
 PixelPulse Media blends clean UI design with immersive storytelling to showcase how creativity and performance can coexist beautifully in a static site. Designed for speed, accessibility, and aesthetic impact — this project demonstrates how far pure front-end craftsmanship can go without relying on heavy frameworks.
